@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="myorg"
+		class="com.iomate.spring.lab.domain.Organisation">
+		<constructor-arg value="Google" name="companyName"></constructor-arg>
+		<constructor-arg value="1996" name="yearOfIncorporation"></constructor-arg>
+		<property name="postalCode">
+			<value>56566</value>
+		</property>
+		<property name="employeeCount">
+			<value>100005</value>
+		</property>
+		<property name="slogan"
+			value="To organise the worlds information and make it universally accessible and useful">
+		</property>
+		<property name="businessService" ref="ecommerceService"></property>
+	</bean>
+	<bean id="cloudService"
+		class="com.iomate.spring.lab.service.impl.CloudServiceImpl">
+	</bean>
+	<bean id="ecommerceService"
+		class="com.iomate.spring.lab.service.impl.EcommerceServiceImpl">
+	</bean>
+	<bean
+		class="com.iomate.spring.lab.service.impl.AgencyRecruitmentServiceImpl"
+		id="agency">
+	</bean>
+	<bean
+		class="com.iomate.spring.lab.service.impl.ReferralRecruitmentServiceImpl"
+		id="referral">
+	</bean>
+	<bean id="myhrdept"
+		class="com.iomate.spring.lab.domain.HumanResourceDept">
+	<constructor-arg name="recruitmentService" ref="referral"></constructor-arg>
+	<constructor-arg name="organisation" ref="myorg"></constructor-arg>
+	<property name="deptName" value="Human Resource Department"></property>
+	</bean>
+</beans>

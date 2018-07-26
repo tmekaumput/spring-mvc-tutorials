@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="myorg" class="tutorial.spring.lab1.Organisation"
+		factory-method="createInstance">
+		<constructor-arg value="BMW" name="companyName"></constructor-arg>
+		<constructor-arg value="1929" name="yearOfIncorporation"></constructor-arg>
+	</bean>
+	<bean id="myorg2" class="tutorial.spring.lab1.Organisation"
+		factory-method="getInstance" factory-bean="organisationFactory">
+		<constructor-arg value="Google" name="companyName"></constructor-arg>
+		<constructor-arg value="1996" name="yearOfIncorporation"></constructor-arg>
+	</bean>
+	<bean class="tutorial.spring.lab1.OrganisationFactory"
+		id="organisationFactory" lazy-init="false">
+	</bean>
+</beans>
